@@ -27,7 +27,7 @@
 <?php
 
 if ($show_menu) { ?>
-<?php /*
+    <?php /*
     <div class="container">
         <div class="navbar navbar-default">
             <nav class="navbar navbar-expand-lg ">
@@ -69,18 +69,20 @@ if ($show_menu) { ?>
                      class="d-inline-block align-top" alt="">
                 DGS
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="?a=vote">Valg</a>
-                    <?php if($is_admin) { ?>
-                    <a class="nav-item nav-link" href="?a=admin/new_election">Nytt valg</a>
-                    <a class="nav-item nav-link" href="?a=admin/election_overview">Administrer valg</a>
+                    <?php if ($is_admin) { ?>
+                        <a class="nav-item nav-link" href="?a=admin/new_election">Nytt valg</a>
+                        <a class="nav-item nav-link" href="?a=admin/election_overview">Administrer valg</a>
                         <a class="nav-item nav-link" href="?a=admin/add_user">Ny bruker</a>
                         <a class="nav-item nav-link" href="?a=admin/user_overview">Administrer brukere</a>
                     <?php } ?>
+                    <a class="nav-item nav-link" href="?a=login/logout">Logg ut</a>
                 </div>
             </div>
         </nav>
