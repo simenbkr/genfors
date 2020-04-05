@@ -18,6 +18,7 @@ class LoginCtrl extends AbstractCtrl implements CtrlInterface
                             Misc::setError("This user is not active!");
                         }
                         Session::loginUser($user);
+                        MainCtrl::redirect('/?a=election');
                     } else {
                         Misc::setError("Invalid credentials!");
                     }

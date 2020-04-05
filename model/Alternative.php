@@ -4,7 +4,7 @@
 namespace genfors;
 
 
-class Alternatives
+class Alternative
 {
     private int $id;
     private int $election_id;
@@ -31,7 +31,7 @@ class Alternatives
     {
         $alternatives = array();
 
-        $st = DB::getDB()->prepare('SELECT * FROM alternatives WHERE election_id = :election_id');
+        $st = DB::getDB()->prepare('SELECT * FROM alternative WHERE election_id = :election_id');
         $st->execute(['election_id' => $election_id]);
 
         for ($i = 0; $i < $st->rowCount(); $i++) {
@@ -63,7 +63,7 @@ class Alternatives
 
     public function incrementVotes()
     {
-        $st = DB::getDB()->prepare('UPDATE alternatives SET votes = votes + 1 WHERE id = :id');
+        $st = DB::getDB()->prepare('UPDATE alternative SET votes = votes + 1 WHERE id = :id');
         $st->execute(['id' => $this->id]);
     }
 

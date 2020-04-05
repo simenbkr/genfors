@@ -30,6 +30,13 @@ class Election
         return $instance;
     }
 
+    public static function withID(int $id): ?Election
+    {
+        $st = DB::getDB()->prepare('SELECT * FROM election WHERE id = :id');
+        $st->execute(['id' => $id]);
+        return self::init($st);
+    }
+
     public function getId(): int
     {
         return $this->id;
@@ -50,7 +57,7 @@ class Election
         return $this->is_active;
     }
 
-    public function getAlternative()
+    public function getAlternatives()
     {
         return $this->alternatives;
     }
@@ -69,7 +76,7 @@ class Election
 
     public function generateElectionKey(User $user): string
     {
-        $check_string = "{$user->getID()}-{$user->getUsername()}-{$this->title}";
+        $check_string = "{$user->getID()}-{$user->getUsername()}-{$this->title}-{$this->id}";
         return hash_hmac('sha3-256', $check_string, SECRET);
     }
 
@@ -81,5 +88,22 @@ class Election
         $st->execute(['checkstr' => $check]);
 
         return $st->fetch()['cnt'] > 0;
+    }
+
+    public function getAlternative(int $id)
+    {
+        foreach ($this->alternatives as $alternative) {
+            if ($alternative->id === $id) {
+                return $alternative;
+            }
+        }
+        return null;
+    }
+
+    public function registerVote(Alternative $alternative, User $user)
+    {
+        $st = DB::getDB()->prepare('INSERT INTO votes(val) VALUES(:val)');
+        $st->execute(['val' => $this->generateElectionKey($user)]);
+        $alternative->incrementVotes();
     }
 }
