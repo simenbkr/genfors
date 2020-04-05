@@ -42,7 +42,7 @@ class Session
     public static function refresh()
     {
         $user = self::getActiveUser();
-        if (is_null($user) || !$user->isActive()) {
+        if (is_null($user) || (!$user->isActive() && !$user->isAdmin())) {
             self::destroy();
             return;
         }

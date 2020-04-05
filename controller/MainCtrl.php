@@ -22,7 +22,7 @@ class MainCtrl extends AbstractCtrl implements CtrlInterface
 
         $user = Session::getActiveUser();
 
-        if (!$user->isActive()) {
+        if (!$user->isActive() && !$user->isAdmin()) {
             Session::destroy();
             self::redirect("/?a=login");
         }
@@ -35,6 +35,7 @@ class MainCtrl extends AbstractCtrl implements CtrlInterface
                     $ctrl->do();
                 } else {
                     Misc::setError("You do not have access to this page.");
+                    self::redirect('/?a=election');
                 }
                 break;
             default:

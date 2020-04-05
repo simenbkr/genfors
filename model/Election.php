@@ -109,7 +109,7 @@ class Election
 
     public static function allActive(): array
     {
-        $st = DB::getDB()->prepare('SELECT * FROM election WHERE is_active = 1');
+        $st = DB::getDB()->prepare('SELECT * FROM election WHERE is_active = 1 ORDER BY id DESC');
         $st->execute();
 
         $elections = array();

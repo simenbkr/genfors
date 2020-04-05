@@ -79,13 +79,10 @@ if ($show_menu) { ?>
                     <a class="nav-item nav-link" href="?a=admin/new_election">Nytt valg</a>
                     <a class="nav-item nav-link" href="?a=admin/election_overview">Administrer valg</a>
                         <a class="nav-item nav-link" href="?a=admin/add_user">Ny bruker</a>
-                        <a class="nav-item nav-link" href="?a=admin/view_users">Administrer brukere</a>
+                        <a class="nav-item nav-link" href="?a=admin/user_overview">Administrer brukere</a>
                     <?php } ?>
                 </div>
             </div>
         </nav>
-
     </div>
-
-
 <?php } ?>

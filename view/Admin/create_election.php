@@ -11,6 +11,8 @@ require_once '../view/Static/top.php';
 
         <hr>
 
+        <?php require_once '../view/Static/feedback.php'; ?>
+
         <div class="control-group" id="fields">
             <div class="controls">
                 <form role="form" autocomplete="off" method="post" action="?a=admin/new_election">

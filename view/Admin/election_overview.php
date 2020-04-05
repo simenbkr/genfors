@@ -10,6 +10,8 @@ require_once '../view/Static/top.php';
 
         <h1>Administrer valg</h1>
 
+        <?php require_once '../view/Static/feedback.php'; ?>
+
         <hr>
         <?php foreach ($elections as $election) {
             /* @var \genfors\Election $election */

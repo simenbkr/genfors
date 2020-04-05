@@ -9,6 +9,9 @@ require_once '../view/Static/top.php';
     <div class="col-lg-12">
         <h3>Valg</h3>
 
+
+        <?php require_once '../view/Static/feedback.php'; ?>
+
         <?php if (count($elections) == 0) { ?>
 
             <h3>Det er foreløpig ingen aktive valg.</h3>
@@ -46,7 +49,8 @@ require_once '../view/Static/top.php';
                                             Stem
                                         </button>
                                     <?php } else { ?>
-                                        Du har allerede avgitt stemme.
+                                        <button class="btn btn-danger disabled">Stem</button>
+                                        <small>Du har allerede avgitt stemme.</small>
                                     <?php } ?>
                                 </td>
                             </tr>
