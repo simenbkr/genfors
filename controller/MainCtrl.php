@@ -23,8 +23,8 @@ class MainCtrl extends AbstractCtrl implements CtrlInterface
         $user = Session::getActiveUser();
 
         if (!$user->isActive()) {
-            self::redirect("/?a=login");
             Session::destroy();
+            self::redirect("/?a=login");
         }
 
         switch ($this->CD->getRelevantArg()) {

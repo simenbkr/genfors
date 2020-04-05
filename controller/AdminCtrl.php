@@ -47,9 +47,6 @@ class AdminCtrl extends AbstractCtrl implements CtrlInterface
                     $view->set('user', $user);
                     $view->display('Admin/view_user.php');
                     break;
-
-
-                    
             }
         }
 
