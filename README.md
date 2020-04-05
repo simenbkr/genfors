@@ -64,6 +64,5 @@ By modifying ```create_admin_user.php```
 ```
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt install python-certbot-apache
-
-
+sudo certbot
 ```
