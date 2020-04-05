@@ -18,5 +18,5 @@ spl_autoload_register(function($class) {
             return;
         }
     }
-    throw new \Exception('Kan ikke laste ' . $navn);
+    throw new \Exception('Could not load ' . $navn);
 });
