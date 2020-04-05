@@ -29,8 +29,8 @@ class Session
     {
         self::set("id", $user->getID());
         self::set("username", $user->getUsername());
-        self::set("is_active", $user->isActive());
-        self::set("is_admin", $user->isAdmin());
+        self::set("is_active", $user->isActive() ? 'yes' : 'no');
+        self::set("is_admin", $user->isAdmin() ? 'yes' : 'no');
     }
 
     public static function updatePrivileges()

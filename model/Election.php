@@ -25,7 +25,7 @@ class Election
         $instance->title = $row['title'];
         $instance->description = $row['description'];
         $instance->is_active = (intval($row['is_active']) == 1) ? true : false;
-        $instance->alternatives = Alternatives::withElectionID($instance->id);
+        $instance->alternatives = Alternative::withElectionID($instance->id);
 
         return $instance;
     }
@@ -93,7 +93,7 @@ class Election
     public function getAlternative(int $id)
     {
         foreach ($this->alternatives as $alternative) {
-            if ($alternative->id === $id) {
+            if ($alternative->getId() === $id) {
                 return $alternative;
             }
         }
@@ -118,5 +118,49 @@ class Election
         }
 
         return $elections;
+    }
+
+    public static function create(string $title, string $description, array $alternatives)
+    {
+        $st = DB::getDB()->prepare('INSERT INTO election(title, description, is_active) VALUES(:title, :description, 0)');
+        $st->execute([
+            'title' => $title,
+            'description' => $description
+        ]);
+
+        $st = DB::getDB()->prepare('SELECT * FROM election WHERE title = :title ORDER BY id DESC LIMIT 1');
+        $st->execute(['title' => $title]);
+        $election = self::init($st);
+
+        foreach ($alternatives as $alternative) {
+            Alternative::create($election->getId(), $alternative);
+        }
+
+        return self::withID($election->getId());
+    }
+
+    public static function all(): array
+    {
+        $st = DB::getDB()->prepare('SELECT * FROM election ORDER BY id DESC');
+        $st->execute();
+
+        $elections = array();
+        for ($i = 0; $i < $st->rowCount(); $i++) {
+            $elections[] = self::init($st);
+        }
+
+        return $elections;
+    }
+
+    public function getVoteBreakdownString() {
+        $out = '';
+
+        foreach($this->alternatives as $alternative) {
+            /* @var \genfors\Alternative $alternative */
+            $out .= "{$alternative->getName()}: {$alternative->getVotes()}<br/> ";
+        }
+
+        return rtrim($out, ', ');
+
     }
 }

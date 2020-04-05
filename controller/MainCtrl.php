@@ -29,10 +29,6 @@ class MainCtrl extends AbstractCtrl implements CtrlInterface
 
         switch ($this->CD->getRelevantArg()) {
 
-            case 'vote':
-                $ctrl = new VoteCtrl($this->CD->shiftArg());
-                $ctrl->do();
-                break;
             case 'admin':
                 if ($user->isAdmin()) {
                     $ctrl = new AdminCtrl($this->CD->shiftArg());
@@ -40,6 +36,11 @@ class MainCtrl extends AbstractCtrl implements CtrlInterface
                 } else {
                     Misc::setError("You do not have access to this page.");
                 }
+                break;
+            default:
+            case 'vote':
+                $ctrl = new VoteCtrl($this->CD->shiftArg());
+                $ctrl->do();
                 break;
         }
     }

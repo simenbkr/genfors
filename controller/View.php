@@ -34,6 +34,10 @@ class View extends AbstractCtrl
         }
 
         $show_menu = true;
+        $is_admin = false;
+        if(Session::get('is_admin') === 'yes') {
+            $is_admin = true;
+        }
 
         require_once($path);
     }

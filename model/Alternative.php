@@ -11,7 +11,7 @@ class Alternative
     private string $name;
     private int $votes;
 
-    private static function init(\PDOStatement $st)
+    private static function init(\PDOStatement $st) :?Alternative
     {
         $row = $st->fetch();
 
@@ -25,6 +25,8 @@ class Alternative
         $instance->election_id = intval($row['election_id']);
         $instance->name = $row['name'];
         $instance->votes = $row['votes'];
+
+        return $instance;
     }
 
     public static function withElectionID(int $election_id)
@@ -65,6 +67,15 @@ class Alternative
     {
         $st = DB::getDB()->prepare('UPDATE alternative SET votes = votes + 1 WHERE id = :id');
         $st->execute(['id' => $this->id]);
+    }
+
+    public static function create(int $election_id, string $name)
+    {
+        $st = DB::getDB()->prepare('INSERT INTO alternative(election_id, name) VALUES (:election_id, :name)');
+        $st->execute([
+            'election_id' => $election_id,
+            'name' => $name
+        ]);
     }
 
 }

@@ -37,6 +37,10 @@ class AdminCtrl extends AbstractCtrl implements CtrlInterface
                     $election = Election::withID($post['election_id']);
                     $election->deactivate();
                     break;
+
+                case 'new_election':
+                    $election = Election::create($post['title'], $post['description'], $post['alternatives']);
+                    print $election->getId();
             }
 
             return;
@@ -51,7 +55,7 @@ class AdminCtrl extends AbstractCtrl implements CtrlInterface
                     $view->display('Admin/create_user.php');
                     break;
 
-                case 'view_user':
+                case 'view_users':
                     $user = User::withID($this->CD->getFinalArg());
                     $view->set('user', $user);
                     $view->display('Admin/view_user.php');
@@ -59,6 +63,11 @@ class AdminCtrl extends AbstractCtrl implements CtrlInterface
 
                 case 'new_election':
                     $view->display('Admin/create_election.php');
+                    break;
+
+                case 'election_overview':
+                    $view->set('elections', Election::all());
+                    $view->display('Admin/election_overview.php');
                     break;
 
                 case 'manage_election':

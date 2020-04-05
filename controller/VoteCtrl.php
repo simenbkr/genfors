@@ -31,12 +31,14 @@ class VoteCtrl extends AbstractCtrl implements CtrlInterface
                 case 'election':
                     $election = Election::withID($this->CD->getFinalArg());
                     $view->set('election', $election);
+                    $view->set('user', Session::getActiveUser());
                     $view->display('Election/election_view.php');
                     break;
                 case 'overview':
                 case '':
                 default:
                     $view->set('elections', Election::allActive());
+                    $view->set('user', Session::getActiveUser());
                     $view->display('Election/election_overview.php');
                     break;
             }
