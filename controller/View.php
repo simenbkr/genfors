@@ -32,6 +32,9 @@ class View extends AbstractCtrl
         foreach ($this->var as $key => $val) {
             ${$key} = $val;
         }
+
+        $show_menu = true;
+
         require_once($path);
     }
 }

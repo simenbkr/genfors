@@ -106,4 +106,17 @@ class Election
         $st->execute(['val' => $this->generateElectionKey($user)]);
         $alternative->incrementVotes();
     }
+
+    public static function allActive(): array
+    {
+        $st = DB::getDB()->prepare('SELECT * FROM election WHERE is_active = 1');
+        $st->execute();
+
+        $elections = array();
+        for ($i = 0; $i < $st->rowCount(); $i++) {
+            $elections[] = self::init($st);
+        }
+
+        return $elections;
+    }
 }

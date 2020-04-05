@@ -27,7 +27,29 @@
 <?php
 
 if($show_menu) { ?>
+    <style>
+        .navbar .navbar-nav {
+            display: inline-block;
+            float: none;
+        }
 
-
-
+        .navbar .navbar-collapse {
+            text-align: center;
+        }
+    </style>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://intern.singsaker.no/dgs_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            DGS
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="?a=vote">Valg</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
 <?php } ?>
