@@ -12,7 +12,7 @@ sudo apt-get update
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
-sudo apt install php7.4 libapache2-mod-php7.4 php7.4-fpm mariadb-server php7.4-mysql
+sudo apt install php7.4 libapache2-mod-php7.4 php7.4-fpm mariadb-server php7.4-mysql php7.4-curl php7.4-mbstring
 ```
 
 ### Setup database
@@ -46,6 +46,8 @@ vim config.php # Fix your config with the usernames/passwords required
 mkdir genfors/sessions
 chown -R www-data:www-data genfors/sessions
 chown -R www-data:www-data genfors/www
+curl -sS https://getcomposer.org/installer | php # This is really bad practice, but sometimes you gotta live on the edge.
+php composer.phar install
 ```
 Remember to update the SECRET in the configuration file.
 
