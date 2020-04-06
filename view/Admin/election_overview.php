@@ -51,8 +51,7 @@ require_once '../view/Static/top.php';
 
             </table>
             <hr>
-        <?php }
-          ?>
+        <?php } ?>
 
 
     </div>
