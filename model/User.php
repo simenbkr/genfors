@@ -127,7 +127,7 @@ class User
         self::new($username, $raw_pw, 0, 0);
 
         $email_content = MAIL_USER_CONTENT_START;
-        $email_content .= "$username<br/>$raw_pw";
+        $email_content .= "Brukernavn: $username<br/>Passord: $raw_pw";
         $email_content .= MAIL_USER_CONTENT_END;
 
         Email::sendEmail(MAIL_USER_TITLE, $email_content, $email);
