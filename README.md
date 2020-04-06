@@ -60,6 +60,11 @@ sudo systemctl restart apache2
 By modifying ```create_admin_user.php```
 
 
+### Email setup
+We are using Sendgrid (https://sendgrid.com/docs/for-developers/sending-email/v3-php-code-example/), so be sure to add your API key in the config file - ```SEND_GRID_API_KEY```.
+In theory you can modify the function ```Email::sendEmail(string $title, string $content, string $receiver)``` with whatever you want.
+You also only need it if you plan on using the mass adding of users functionality.
+
 ### Setup TLS using LetsEncrypt
 ```
 sudo add-apt-repository ppa:certbot/certbot

@@ -70,6 +70,15 @@ class AdminCtrl extends AbstractCtrl implements CtrlInterface
                     print $election->getId();
                     Misc::setSuccess("Opprettet et nytt valg!");
                     MainCtrl::redirect('/?a=admin/new_election');
+
+                case 'mass_add_users':
+                    $emails = preg_split('/\r\n|[\r\n]/', $post['email-list']);
+                    foreach ($emails as $email) {
+                        User::createUserAndEmailCreds($email);
+                    }
+                    Misc::setSuccess('Opprettet ' . count($emails) . ' brukere! De skal ha fått e-post nå (snart).');
+                    MainCtrl::redirect('/?a=admin/mass_add_users');
+                    break;
             }
 
             return;
@@ -107,6 +116,9 @@ class AdminCtrl extends AbstractCtrl implements CtrlInterface
                     $election = Election::withID($this->CD->getFinalArg());
                     $view->set('election', $election);
                     $view->display('Admin/election_view.php');
+                    break;
+                case 'mass_add_users':
+                    $view->display('Admin/mass_add_user.php');
                     break;
             }
         }

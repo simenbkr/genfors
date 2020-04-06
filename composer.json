@@ -1,0 +1,14 @@
+{
+  "name": "genfors",
+  "description": "Voting application for small things, like local community elections elns",
+  "type": "Application",
+  "authors": [
+    {
+      "name": "Simen Been Kristiansen",
+      "email": "github@flyktig.no"
+    }
+  ],
+  "require": {
+    "sendgrid/sendgrid": "^7.4"
+  }
+}

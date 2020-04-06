@@ -17,6 +17,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 session_start();
 
+require_once '../vendor/autoload.php';
 require_once '../model/Autoload.php';
 
 $arg = isset($_GET['a']) ? explode('/', $_GET['a']) : array();

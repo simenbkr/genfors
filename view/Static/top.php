@@ -81,6 +81,7 @@ if ($show_menu) { ?>
                         <a class="nav-item nav-link" href="?a=admin/election_overview">Administrer valg</a>
                         <a class="nav-item nav-link" href="?a=admin/add_user">Ny bruker</a>
                         <a class="nav-item nav-link" href="?a=admin/user_overview">Administrer brukere</a>
+                        <a class="nav-item nav-link" href="?a=admin/mass_add_users">Legg til mange brukere</a>
                     <?php } ?>
                     <a class="nav-item nav-link" href="?a=login/logout">Logg ut</a>
                 </div>
