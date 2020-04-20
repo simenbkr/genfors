@@ -36,6 +36,11 @@ require_once '../view/Static/top.php';
                     <td><?php echo $election->getVoteBreakdownString(); ?></td>
                 </tr>
 
+                <tr>
+                    <th>Totalt:</th>
+                    <td><?php echo $election->getTotaltVotes(); ?></td>
+                </tr>
+
                 <?php if($election->isActive()) { ?>
                 <tr>
                     <th></th>

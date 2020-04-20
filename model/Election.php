@@ -163,4 +163,14 @@ class Election
         return rtrim($out, ', ');
 
     }
+
+    public function getTotaltVotes() : int {
+        $sum = 0;
+        foreach($this->alternatives as $alternative) {
+            /* @var \genfors\Alternative $alternative */
+            $sum += $alternative->getVotes();
+        }
+
+        return $sum;
+    }
 }
