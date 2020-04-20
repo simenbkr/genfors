@@ -9,6 +9,13 @@ require_once '../view/Static/top.php';
     <div class="col-lg-12">
         <h3>Valg</h3>
 
+        <?php if ($user->isAdmin()) { ?>
+            <b>Administratorbrukere kan ikke avgi stemme!</b>
+
+            <?php
+            exit();
+        } ?>
+
 
         <?php require_once '../view/Static/feedback.php'; ?>
 
@@ -26,7 +33,7 @@ require_once '../view/Static/top.php';
                     <tr>
                         <th>Tittel</th>
                         <td>
-                            <a href="?a=vote/election/<?php echo $election->getId(); ?>"><?php echo $election->getTitle(); ?></a>
+                            <?php echo $election->getTitle(); ?>
                         </td>
                     </tr>
                     <tr>

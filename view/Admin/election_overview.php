@@ -20,7 +20,7 @@ require_once '../view/Static/top.php';
 
                 <tr>
                     <th>Tittel</th>
-                    <td><a href="?a=admin/manage_election/<?php echo $election->getId(); ?>"><?php echo $election->getTitle(); ?></a></td>
+                    <td><?php echo $election->getTitle(); ?></td>
                 </tr>
                 <tr>
                     <th>Beskrivelse:</th>

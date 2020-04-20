@@ -17,6 +17,12 @@ class VoteCtrl extends AbstractCtrl implements CtrlInterface
                     $user = Session::getActiveUser();
                     $election = Election::withID($post['election_id']);
                     $alternative = $election->getAlternative($post['alternative_id']);
+
+                    if($user->isAdmin()) {
+                        Misc::setError("Administratorer kan ikke stemme!");
+                        exit();
+                    }
+
                     $election->registerVote($alternative, $user);
                     break;
             }
