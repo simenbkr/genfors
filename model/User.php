@@ -118,12 +118,22 @@ class User
         DB::getDB()->query('UPDATE users SET is_active = 1');
     }
 
+    public static function exists(string $username) : bool {
+        $st = DB::getDB()->prepare('SELECT * FROM users WHERE username = :username');
+        $st->execute(['username' => $username]);
+
+        return $st->rowCount() > 0;
+    }
+
     public static function createUserAndEmailCreds(string $email)
     {
 
         $raw_pw = bin2hex(random_bytes(12));
-        $username = explode('@', $email)[0] . bin2hex(random_bytes(2));
 
+        $username = explode('@', $email)[0];
+        while(User::exists($username)) {
+            $username .= bin2hex(random_bytes(2));
+        }
         self::new($username, $raw_pw, 0, 0);
 
         $email_content = MAIL_USER_CONTENT_START;
