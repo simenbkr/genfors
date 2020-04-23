@@ -102,6 +102,13 @@ class Election
 
     public function registerVote(Alternative $alternative, User $user)
     {
+        $st = DB::getDB()->prepare('SELECT * FROM votes WHERE val = :val');
+        $st->execute(['val' => $this->generateElectionKey($user)]);
+
+        if($st->rowCount() > 0) {
+            return;
+        }
+
         $st = DB::getDB()->prepare('INSERT INTO votes(val) VALUES(:val)');
         $st->execute(['val' => $this->generateElectionKey($user)]);
         $alternative->incrementVotes();
