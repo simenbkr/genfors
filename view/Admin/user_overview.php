@@ -12,6 +12,7 @@ require_once '../view/Static/top.php';
         <table class="table table-responsive">
 
             <p>Det er <b><?php echo count($users); ?></b> registrerte brukere totalt.</p>
+            <p>Av disse er <b><?php echo count(\genfors\User::active()); ?></b> aktive.</p>
 
             <thead>
             <tr>

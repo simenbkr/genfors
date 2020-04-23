@@ -43,6 +43,18 @@ class User
         return self::init($st);
     }
 
+    public static function active() : array {
+        $st = DB::getDB()->prepare('SELECT * FROM users WHERE is_active = 1');
+        $st->execute();
+
+        $users = array();
+        for ($i = 0; $i < $st->rowCount(); $i++) {
+            $users[] = self::init($st);
+        }
+
+        return $users;
+    }
+
     public function getID(): int
     {
         return $this->id;
